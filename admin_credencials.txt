@@ -1,0 +1,3 @@
+username = "steven"
+email = "stevencara2022@gmail.com"
+password = "Operacioness3"
