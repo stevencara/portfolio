@@ -1,3 +1,39 @@
+
 username = "steven"
 email = "stevencara2022@gmail.com"
 password = "Operacioness3"
+
+
+
+**En caso de generar el administrador ya que render toca pagar para abrir una consola**
+
+Ya con esta línea añadida:
+
+import create_admin
+tu proyecto ejecutará automáticamente el script create_admin.py cuando Render lo levante, lo que nos sirve justo para crear el superusuario la primera vez que se despliegue.
+
+✅ Ahora asegúrate de tener el archivo create_admin.py
+Ubícalo en el mismo directorio que manage.py (es decir, en la raíz del proyecto), y copia este contenido:
+
+# create_admin.py
+import os
+import django
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_portfolio.settings")
+django.setup()
+
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+username = "steven"
+email = "steven@example.com"
+password = "admin1234"
+
+if not User.objects.filter(username=username).exists():
+    User.objects.create_superuser(username=username, email=email, password=password)
+    print("✅ Superusuario creado.")
+else:
+    print("⚠️ El superusuario ya existe.")
+
+
